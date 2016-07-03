@@ -6,10 +6,10 @@ import time
 app = Flask(__name__)
 key_last_pressed = {}
 gpio = {
-    'up': LED(1),
-    'down': LED(2),
-    'left': LED(3),
-    'right': LED(4),
+    'up': LED(4),
+    'down': LED(17),
+    'left': LED(5),
+    'right': LED(6),
 }
 
 
