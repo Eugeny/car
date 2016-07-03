@@ -7,9 +7,9 @@ app = Flask(__name__)
 key_last_pressed = {}
 gpio = {
     'up': LED(1),
-    'down': LED(1),
-    'left': LED(1),
-    'right': LED(1),
+    'down': LED(2),
+    'left': LED(3),
+    'right': LED(4),
 }
 
 
