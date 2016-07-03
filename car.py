@@ -1,13 +1,23 @@
+from gpiozero import LED
 from flask import Flask, render_template
 from threading import Thread
 import time
 
 app = Flask(__name__)
 key_last_pressed = {}
+gpio = {
+    'up': LED(1),
+    'down': LED(1),
+    'left': LED(1),
+    'right': LED(1),
+}
 
 
 def set_gpio(direction, state):
-    print 'GPIO %s %s' % (direction, state)
+    if state:
+        gpio[direction].on()
+    else:
+        gpio[direction].off()
 
 
 def worker():
@@ -44,4 +54,4 @@ def key(key, action):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(threaded=True)
+    app.run(threaded=True, host='0.0.0.0')
