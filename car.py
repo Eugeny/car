@@ -22,7 +22,7 @@ def set_gpio(direction, state):
 
 def worker():
     while True:
-        time.sleep(0.2)
+        time.sleep(0.05)
 
         for key in ['up', 'down', 'left', 'right']:
             if time.time() - key_last_pressed.get(key, 0) > 500:
