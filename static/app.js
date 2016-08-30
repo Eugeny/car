@@ -30,23 +30,25 @@ $(function () {
 });
 
 
-flowplayer("player", "/static/flow/flowplayer-3.2.3.swf", {
-    debug: true,
-    log: { level: 'info', filter: '*' },
-    clip: {
-        url: 'test',
-        provider: 'rtmp',
-        live: true,
-        autoPlay: true,
-        bufferLength: 0.1,
-    },
-    plugins: {
-        rtmp: {
-            url: '/static/flow/flowplayer.rtmp-3.2.3.swf',
-            netConnectionUrl: 'rtmp://ajenti.org/flvplayback',
+$(function () {
+    flowplayer("player", "/static/flow/flowplayer-3.2.3.swf", {
+        debug: true,
+        log: { level: 'info', filter: '*' },
+        clip: {
+            url: 'test',
+            provider: 'rtmp',
+            live: true,
+            autoPlay: true,
+            bufferLength: 0.1,
         },
-        controls: {
-            url: '/static/flow/flowplayer.controls-3.2.3.swf',
+        plugins: {
+            rtmp: {
+                url: '/static/flow/flowplayer.rtmp-3.2.3.swf',
+                netConnectionUrl: 'rtmp://ajenti.org/flvplayback',
+            },
+            controls: {
+                url: '/static/flow/flowplayer.controls-3.2.3.swf',
+            }
         }
-    }
+    });
 });
