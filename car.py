@@ -1,4 +1,4 @@
-from gpiozero import LED
+from gpiozero import OutputDevice
 from flask import Flask, render_template
 from threading import Thread
 import time
@@ -6,29 +6,33 @@ import time
 app = Flask(__name__)
 key_last_pressed = {}
 gpio = {
-    'up': LED(17),
-    'down': LED(4),
-    'left': LED(6),
-    'right': LED(5),
+    'motor1': OutputDevice(13),
+    'motor2': OutputDevice(19),
+    'motor_enable': OutputDevice(26),
 }
 
 
-def set_gpio(direction, state):
-    if state:
-        gpio[direction].on()
+def set_gpio(keys):
+    if 'up' in keys or 'down' in keys:
+        if 'up' in keys:
+            gpio['motor1'].on()
+            gpio['motor2'].off()
+        else:
+            gpio['motor1'].off()
+            gpio['motor2'].on()
+        gpio['motor_enable'].on()
     else:
-        gpio[direction].off()
+        gpio['motor_enable'].off()
 
 
 def worker():
     while True:
         time.sleep(0.05)
-
+        keys_pressed = set()
         for key in ['up', 'down', 'left', 'right']:
             if time.time() - key_last_pressed.get(key, 0) > 500:
-                set_gpio(key, False)
-            else:
-                set_gpio(key, True)
+                keys_pressed.add(key)
+        set_gpio(keys_pressed)
 
 
 @app.before_first_request
