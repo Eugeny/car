@@ -17,14 +17,17 @@ setInterval(function () {
 $(function () {
     $(document).on('keydown', function (event) {
         var keyName = keyNames[event.which];
-        if (keyName)
+        if (keyName) {
             keyStates[keyName] = true;
+            $('#button-' + keyName).addClass('btn-active');
+        }
     });
     $(document).on('keyup', function (event) {
         var keyName = keyNames[event.which];
         if (keyName) {
             keyStates[keyName] = false;
             $.ajax('/key/' + keyName + '/release');
+            $('#button-' + keyName).removeClass('btn-active');
         }
     });
 });
