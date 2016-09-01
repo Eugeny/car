@@ -9,8 +9,8 @@ gpio = {
     'motor1': OutputDevice(13),
     'motor2': OutputDevice(19),
     'motor_enable': OutputDevice(26),
-    'steer1': OutputDevice(16),
-    'steer2': OutputDevice(20),
+    'steer1': OutputDevice(20),
+    'steer2': OutputDevice(16),
     'steer_enable': OutputDevice(21),
 }
 
