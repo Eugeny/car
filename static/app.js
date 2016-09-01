@@ -19,7 +19,7 @@ $(function () {
         var keyName = keyNames[event.which];
         if (keyName) {
             keyStates[keyName] = true;
-            $('#button-' + keyName).addClass('btn-active');
+            $('#button-' + keyName).addClass('active');
         }
     });
     $(document).on('keyup', function (event) {
@@ -27,7 +27,7 @@ $(function () {
         if (keyName) {
             keyStates[keyName] = false;
             $.ajax('/key/' + keyName + '/release');
-            $('#button-' + keyName).removeClass('btn-active');
+            $('#button-' + keyName).removeClass('active');
         }
     });
 });

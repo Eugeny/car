@@ -30,7 +30,7 @@ def worker():
         time.sleep(0.05)
         keys_pressed = set()
         for key in ['up', 'down', 'left', 'right']:
-            if time.time() - key_last_pressed.get(key, 0) < 500:
+            if time.time() - key_last_pressed.get(key, 0) <= 500:
                 keys_pressed.add(key)
         set_gpio(keys_pressed)
 
