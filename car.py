@@ -9,6 +9,9 @@ gpio = {
     'motor1': OutputDevice(13),
     'motor2': OutputDevice(19),
     'motor_enable': OutputDevice(26),
+    'steer1': OutputDevice(16),
+    'steer2': OutputDevice(20),
+    'steer_enable': OutputDevice(21),
 }
 
 
@@ -23,6 +26,16 @@ def set_gpio(keys):
         gpio['motor_enable'].on()
     else:
         gpio['motor_enable'].off()
+    if 'left' in keys or 'right' in keys:
+        if 'left' in keys:
+            gpio['steer1'].on()
+            gpio['steer2'].off()
+        else:
+            gpio['steer1'].off()
+            gpio['steer2'].on()
+        gpio['steer_enable'].on()
+    else:
+        gpio['steer_enable'].off()
 
 
 def worker():
