@@ -8,34 +8,33 @@ key_last_pressed = {}
 gpio = {
     'motor1': OutputDevice(13),
     'motor2': OutputDevice(19),
-    'motor_enable': OutputDevice(26),
+    #'motor_enable': OutputDevice(26),
     'steer1': OutputDevice(20),
     'steer2': OutputDevice(16),
-    'steer_enable': OutputDevice(21),
+    #'steer_enable': OutputDevice(21),
 }
 
 
 def set_gpio(keys):
-    if 'up' in keys or 'down' in keys:
-        if 'up' in keys:
-            gpio['motor1'].on()
-            gpio['motor2'].off()
-        else:
-            gpio['motor1'].off()
-            gpio['motor2'].on()
-        gpio['motor_enable'].on()
+    if 'up' in keys:
+        gpio['motor1'].on()
+        gpio['motor2'].off()
+    elif 'down' in keys:
+        gpio['motor1'].off()
+        gpio['motor2'].on()
     else:
-        gpio['motor_enable'].off()
-    if 'left' in keys or 'right' in keys:
-        if 'left' in keys:
-            gpio['steer1'].on()
-            gpio['steer2'].off()
-        else:
-            gpio['steer1'].off()
-            gpio['steer2'].on()
-        gpio['steer_enable'].on()
+        gpio['motor1'].off()
+        gpio['motor2'].off()
+
+    if 'left' in keys:
+        gpio['steer1'].on()
+        gpio['steer2'].off()
+    elif 'right' in keys:
+        gpio['steer1'].off()
+        gpio['steer2'].on()
     else:
-        gpio['steer_enable'].off()
+        gpio['steer1'].off()
+        gpio['steer2'].off()
 
 
 def worker():
